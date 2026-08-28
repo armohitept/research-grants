@@ -1,21 +1,565 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Current Research Grant Calls</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f5f7fa;
+    color: #1f2937;
+}
+
+header {
+    background: #17365d;
+    color: white;
+    padding: 35px 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+}
+
+header h1 {
+    margin: 0 0 8px;
+    font-size: 32px;
+}
+
+header p {
+    margin: 0;
+    opacity: 0.9;
+}
+
+.updated {
+    margin-top: 12px;
+    font-size: 13px;
+    opacity: 0.8;
+}
+
+.controls {
+    background: white;
+    margin: 25px auto;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+}
+
+.controls input,
+.controls select {
+    padding: 12px;
+    margin: 5px;
+    border: 1px solid #d1d5db;
+    border-radius: 7px;
+    font-size: 14px;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.stat {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.stat strong {
+    display: block;
+    font-size: 28px;
+    margin-bottom: 5px;
+}
+
+.grants {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: white;
+    border-radius: 12px;
+    padding: 22px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    border-top: 5px solid #17365d;
+}
+
+.card h2 {
+    margin-top: 8px;
+    font-size: 20px;
+}
+
+.agency {
+    font-weight: bold;
+    color: #17365d;
+}
+
+.badge {
+    display: inline-block;
+    padding: 5px 9px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    margin-top: 8px;
+}
+
+.red {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.orange {
+    background: #ffedd5;
+    color: #9a3412;
+}
+
+.green {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.details {
+    margin: 15px 0;
+    line-height: 1.7;
+    font-size: 14px;
+}
+
+.button {
+    display: inline-block;
+    background: #17365d;
+    color: white;
+    text-decoration: none;
+    padding: 10px 16px;
+    border-radius: 7px;
+    font-size: 14px;
+}
+
+.button:hover {
+    opacity: 0.85;
+}
+
+footer {
+    margin-top: 50px;
+    background: #17365d;
+    color: white;
+    padding: 25px;
+    text-align: center;
+    font-size: 13px;
+}
+
+@media(max-width: 700px) {
+    .stats {
+        grid-template-columns: 1fr;
+    }
+
+    header h1 {
+        font-size: 25px;
+    }
+}
+</style>
+</head>
+
 <body>
+
+<header>
+<div class="container">
 
 <h1>Current Research Grant Calls</h1>
 
-<p>Latest open funding opportunities for researchers</p>
-
-<hr>
-
-<h2>ICMR</h2>
-
 <p>
-    CAR-2026 – Current Research Grant Opportunity
+Research funding opportunities for faculty, researchers and students
 </p>
 
-<a href="https://www.icmr.gov.in/" target="_blank">
-    View Call
+<div class="updated">
+Last updated: <span id="updatedDate"></span>
+</div>
+
+</div>
+</header>
+
+
+<main class="container">
+
+<div class="controls">
+
+<input
+type="text"
+id="search"
+placeholder="Search grants..."
+onkeyup="filterGrants()">
+
+<select id="agency" onchange="filterGrants()">
+<option value="">All Funding Agencies</option>
+<option value="ICMR">ICMR</option>
+<option value="ANRF">ANRF</option>
+<option value="DST">DST</option>
+<option value="DBT">DBT</option>
+<option value="BIRAC">BIRAC</option>
+</select>
+
+<select id="area" onchange="filterGrants()">
+<option value="">All Research Areas</option>
+<option value="Biomedical">Biomedical</option>
+<option value="Biotechnology">Biotechnology</option>
+<option value="Chemistry">Chemistry</option>
+<option value="Engineering">Engineering</option>
+<option value="AI">AI</option>
+<option value="Public Health">Public Health</option>
+</select>
+
+</div>
+
+
+<div class="stats">
+
+<div class="stat">
+<strong id="total">0</strong>
+Open Calls
+</div>
+
+<div class="stat">
+<strong id="urgent">0</strong>
+Closing ≤ 7 Days
+</div>
+
+<div class="stat">
+<strong id="month">0</strong>
+Closing ≤ 30 Days
+</div>
+
+</div>
+
+
+<div id="grants" class="grants"></div>
+
+</main>
+
+
+<footer>
+
+Research Funding Opportunities Portal
+
+<br><br>
+
+Please verify all deadlines and eligibility requirements from the official funding-agency website before applying.
+
+</footer>
+
+
+<script>
+
+/*
+==========================================================
+GRANT DATABASE
+==========================================================
+
+Add new opportunities here.
+
+deadline format:
+YYYY-MM-DD
+==========================================================
+*/
+
+const grants = [
+
+{
+agency: "ICMR",
+title: "Example Biomedical Research Grant",
+area: "Biomedical",
+amount: "₹25–50 Lakh",
+deadline: "2026-09-15",
+eligibility: "Faculty / Researchers",
+url: "https://www.icmr.gov.in/"
+},
+
+{
+agency: "ANRF",
+title: "Example Research Grant",
+area: "Biotechnology",
+amount: "As per scheme",
+deadline: "2026-09-30",
+eligibility: "Eligible Researchers",
+url: "https://www.anrf.gov.in/"
+},
+
+{
+agency: "DST",
+title: "Example Science & Technology Call",
+area: "Engineering",
+amount: "As per scheme",
+deadline: "2026-10-15",
+eligibility: "Researchers / Faculty",
+url: "https://dst.gov.in/"
+}
+
+];
+
+
+/* TODAY */
+
+const today = new Date();
+
+
+/* FORMAT DATE */
+
+function formatDate(date) {
+
+return new Date(date).toLocaleDateString(
+"en-IN",
+{
+day: "2-digit",
+month: "short",
+year: "numeric"
+}
+);
+
+}
+
+
+/* DAYS REMAINING */
+
+function daysRemaining(deadline) {
+
+const d = new Date(deadline);
+
+const difference =
+d.getTime() - today.getTime();
+
+return Math.ceil(
+difference / (1000 * 60 * 60 * 24)
+);
+
+}
+
+
+/* STATUS */
+
+function getStatus(days) {
+
+if (days <= 7) {
+
+return {
+text: "Closing Soon",
+class: "red"
+};
+
+}
+
+if (days <= 30) {
+
+return {
+text: "Closing This Month",
+class: "orange"
+};
+
+}
+
+return {
+text: "Open",
+class: "green"
+};
+
+}
+
+
+/* DISPLAY GRANTS */
+
+function displayGrants(list) {
+
+const container =
+document.getElementById("grants");
+
+container.innerHTML = "";
+
+let urgent = 0;
+let month = 0;
+
+list.forEach(grant => {
+
+const days =
+daysRemaining(grant.deadline);
+
+
+/* Automatically ignore expired grants */
+
+if (days < 0) return;
+
+
+if (days <= 7) urgent++;
+
+if (days <= 30) month++;
+
+
+const status =
+getStatus(days);
+
+
+const card =
+document.createElement("div");
+
+card.className = "card";
+
+
+card.innerHTML = `
+
+<div class="agency">
+${grant.agency}
+</div>
+
+<h2>
+${grant.title}
+</h2>
+
+<span class="badge ${status.class}">
+${status.text}
+</span>
+
+<div class="details">
+
+<strong>Research Area:</strong>
+${grant.area}
+
+<br>
+
+<strong>Funding:</strong>
+${grant.amount}
+
+<br>
+
+<strong>Eligibility:</strong>
+${grant.eligibility}
+
+<br>
+
+<strong>Deadline:</strong>
+${formatDate(grant.deadline)}
+
+<br>
+
+<strong>Time Remaining:</strong>
+${days} day(s)
+
+</div>
+
+<a
+class="button"
+href="${grant.url}"
+target="_blank">
+
+View Official Call →
+
 </a>
+
+`;
+
+container.appendChild(card);
+
+});
+
+
+document.getElementById("total").innerText =
+list.filter(g => daysRemaining(g.deadline) >= 0).length;
+
+document.getElementById("urgent").innerText =
+urgent;
+
+document.getElementById("month").innerText =
+month;
+
+}
+
+
+/* SEARCH + FILTER */
+
+function filterGrants() {
+
+const search =
+document.getElementById("search")
+.value
+.toLowerCase();
+
+const agency =
+document.getElementById("agency")
+.value;
+
+const area =
+document.getElementById("area")
+.value;
+
+
+const filtered =
+grants.filter(grant => {
+
+return (
+
+(
+grant.title.toLowerCase()
+.includes(search)
+
+||
+
+grant.agency.toLowerCase()
+.includes(search)
+
+||
+
+grant.area.toLowerCase()
+.includes(search)
+)
+
+&&
+
+(agency === "" ||
+grant.agency === agency)
+
+&&
+
+(area === "" ||
+grant.area === area)
+
+);
+
+});
+
+
+displayGrants(filtered);
+
+}
+
+
+/* LAST UPDATED */
+
+document.getElementById("updatedDate")
+.innerText =
+new Date().toLocaleDateString(
+"en-IN",
+{
+day: "2-digit",
+month: "long",
+year: "numeric"
+}
+);
+
+
+/* INITIAL LOAD */
+
+displayGrants(grants);
+
+</script>
 
 </body>
 </html>
