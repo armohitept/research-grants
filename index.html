@@ -462,6 +462,7 @@ function displayGrants(list) {
         <div class="row"><span>Funding</span><strong>${grant.amount}</strong></div>
         <div class="row"><span>Eligibility</span><strong>${grant.eligibility}</strong></div>
         <div class="row"><span>Deadline</span><strong class="deadline-highlight">${formatDate(grant.deadline)}</strong></div>
+        <div class="row"><span>Duration</span><strong>${grant.duration}</strong></div>
         <div class="row"><span>Time remaining</span><strong>${countdownText(days)}</strong></div>
       </div>
       <a class="button" href="${grant.url}" target="_blank" rel="noopener">View official call →</a>
@@ -518,6 +519,7 @@ function normalizeRow(row) {
     amount: get("amount"),
     deadline: get("deadline"),
     eligibility: get("eligibility"),
+    duration: get("duration"),
     url: get("url") || "#"
   };
 }
