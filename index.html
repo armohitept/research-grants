@@ -1,565 +1,563 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Current Research Grant Calls</title>
-
+<title>Research Grant Deadlines</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-* {
-    box-sizing: border-box;
-}
+  :root {
+    --navy: #17365d;
+    --navy-dark: #0f2440;
+    --gold: #b8860b;
+    --gold-light: #f4e9d0;
+    --bg: #f3f4f7;
+    --card: #ffffff;
+    --ink: #1f2937;
+    --ink-soft: #5b6474;
+    --line: #e2e5eb;
+    --red-bg: #fde8e8; --red-ink: #9b1c1c; --red-dot:#dc2626;
+    --orange-bg: #fdecd8; --orange-ink: #92400e; --orange-dot:#ea8a1a;
+    --green-bg: #e0f2e6; --green-ink: #166534; --green-dot:#16a34a;
+    --radius: 14px;
+  }
 
-body {
+  * { box-sizing: border-box; }
+
+  body {
     margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    background: #f5f7fa;
-    color: #1f2937;
-}
+    font-family: 'Inter', -apple-system, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+  }
 
-header {
-    background: #17365d;
+  h1, h2, .brand { font-family: 'Source Serif 4', Georgia, serif; }
+
+  a { color: inherit; }
+
+  .container { max-width: 1180px; margin: 0 auto; padding: 0 20px; }
+
+  /* ---------- Header ---------- */
+  header {
+    background: linear-gradient(155deg, var(--navy) 0%, var(--navy-dark) 100%);
     color: white;
-    padding: 35px 20px;
-}
-
-.container {
-    max-width: 1200px;
-    margin: auto;
-}
-
-header h1 {
-    margin: 0 0 8px;
-    font-size: 32px;
-}
-
-header p {
-    margin: 0;
+    padding: 44px 0 34px;
+    position: relative;
+    overflow: hidden;
+  }
+  header::after {
+    content: "";
+    position: absolute;
+    right: -60px; top: -80px;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(184,134,11,0.18), transparent 70%);
+  }
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold-light);
     opacity: 0.9;
-}
+    margin-bottom: 14px;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: #e0b84a;
+    display: inline-block;
+  }
+  header h1 {
+    margin: 0 0 10px;
+    font-size: clamp(28px, 4vw, 38px);
+    font-weight: 600;
+    line-height: 1.15;
+  }
+  header p.sub {
+    margin: 0;
+    max-width: 640px;
+    opacity: 0.85;
+    font-size: 15.5px;
+    line-height: 1.6;
+  }
+  .updated {
+    margin-top: 20px;
+    font-size: 12.5px;
+    opacity: 0.75;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .updated .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: #4ade80;
+  }
 
-.updated {
-    margin-top: 12px;
-    font-size: 13px;
-    opacity: 0.8;
-}
+  main { padding-bottom: 60px; }
 
-.controls {
-    background: white;
-    margin: 25px auto;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
-}
-
-.controls input,
-.controls select {
-    padding: 12px;
-    margin: 5px;
-    border: 1px solid #d1d5db;
-    border-radius: 7px;
-    font-size: 14px;
-}
-
-.stats {
+  /* ---------- Stats ---------- */
+  .stats {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
-    margin-bottom: 25px;
-}
-
-.stat {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-}
-
-.stat strong {
+    gap: 14px;
+    margin: -26px 0 24px;
+    position: relative;
+    z-index: 2;
+  }
+  .stat {
+    background: var(--card);
+    padding: 20px 18px;
+    border-radius: var(--radius);
+    box-shadow: 0 8px 24px rgba(15, 36, 64, 0.08);
+    border: 1px solid var(--line);
+  }
+  .stat strong {
     display: block;
-    font-size: 28px;
-    margin-bottom: 5px;
-}
+    font-family: 'Source Serif 4', serif;
+    font-size: 30px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 2px;
+  }
+  .stat span { font-size: 13px; color: var(--ink-soft); }
+  .stat.urgent strong { color: var(--red-dot); }
+  .stat.month strong { color: var(--orange-dot); }
 
-.grants {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
-    gap: 20px;
-}
-
-.card {
-    background: white;
-    border-radius: 12px;
-    padding: 22px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
-    border-top: 5px solid #17365d;
-}
-
-.card h2 {
-    margin-top: 8px;
-    font-size: 20px;
-}
-
-.agency {
-    font-weight: bold;
-    color: #17365d;
-}
-
-.badge {
-    display: inline-block;
-    padding: 5px 9px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: bold;
-    margin-top: 8px;
-}
-
-.red {
-    background: #fee2e2;
-    color: #991b1b;
-}
-
-.orange {
-    background: #ffedd5;
-    color: #9a3412;
-}
-
-.green {
-    background: #dcfce7;
-    color: #166534;
-}
-
-.details {
-    margin: 15px 0;
-    line-height: 1.7;
+  /* ---------- Controls ---------- */
+  .controls {
+    background: var(--card);
+    padding: 18px;
+    border-radius: var(--radius);
+    border: 1px solid var(--line);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 26px;
+  }
+  .controls input,
+  .controls select {
+    padding: 11px 13px;
+    border: 1px solid var(--line);
+    border-radius: 9px;
     font-size: 14px;
-}
+    font-family: inherit;
+    background: #fbfbfd;
+    color: var(--ink);
+  }
+  .controls input:focus,
+  .controls select:focus {
+    outline: 2px solid var(--navy);
+    outline-offset: 1px;
+    background: white;
+  }
+  .controls input#search { flex: 2 1 240px; }
+  .controls select { flex: 1 1 160px; }
 
-.button {
-    display: inline-block;
-    background: #17365d;
+  /* ---------- Status banners ---------- */
+  .banner {
+    padding: 13px 16px;
+    border-radius: 10px;
+    font-size: 13.5px;
+    margin-bottom: 20px;
+    display: none;
+    align-items: center;
+    gap: 10px;
+  }
+  .banner.show { display: flex; }
+  .banner.loading { background: #eef2ff; color: #3730a3; }
+  .banner.error { background: #fef2f2; color: #991b1b; }
+  .spinner {
+    width: 14px; height: 14px;
+    border: 2px solid rgba(55,48,163,0.25);
+    border-top-color: #3730a3;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    flex-shrink: 0;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ---------- Grant cards ---------- */
+  .grants {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 18px;
+  }
+  .card {
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 22px;
+    border: 1px solid var(--line);
+    box-shadow: 0 2px 10px rgba(15, 36, 64, 0.04);
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.15s ease, transform 0.15s ease;
+  }
+  .card:hover {
+    box-shadow: 0 10px 26px rgba(15, 36, 64, 0.10);
+    transform: translateY(-2px);
+  }
+  .card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .agency {
+    font-weight: 700;
+    color: var(--navy);
+    font-size: 12.5px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    background: #eef1f6;
+    padding: 4px 10px;
+    border-radius: 20px;
+  }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+  .badge::before {
+    content: "";
+    width: 6px; height: 6px;
+    border-radius: 50%;
+  }
+  .red { background: var(--red-bg); color: var(--red-ink); }
+  .red::before { background: var(--red-dot); }
+  .orange { background: var(--orange-bg); color: var(--orange-ink); }
+  .orange::before { background: var(--orange-dot); }
+  .green { background: var(--green-bg); color: var(--green-ink); }
+  .green::before { background: var(--green-dot); }
+
+  .card h2 {
+    margin: 14px 0 4px;
+    font-size: 19px;
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--ink);
+  }
+
+  .details {
+    margin: 12px 0 16px;
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    line-height: 1.9;
+    flex-grow: 1;
+  }
+  .details strong { color: var(--ink); font-weight: 600; }
+  .details .row {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px dashed var(--line);
+    padding: 4px 0;
+  }
+  .details .row:last-child { border-bottom: none; }
+
+  .deadline-highlight {
+    font-family: 'Source Serif 4', serif;
+    font-weight: 600;
+    color: var(--navy);
+  }
+
+  .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background: var(--navy);
     color: white;
     text-decoration: none;
-    padding: 10px 16px;
-    border-radius: 7px;
-    font-size: 14px;
-}
+    padding: 11px 16px;
+    border-radius: 9px;
+    font-size: 13.5px;
+    font-weight: 600;
+    transition: background 0.15s ease;
+  }
+  .button:hover { background: var(--navy-dark); }
 
-.button:hover {
-    opacity: 0.85;
-}
-
-footer {
-    margin-top: 50px;
-    background: #17365d;
-    color: white;
-    padding: 25px;
+  /* ---------- Empty state ---------- */
+  .empty {
+    grid-column: 1 / -1;
     text-align: center;
-    font-size: 13px;
-}
+    padding: 60px 20px;
+    color: var(--ink-soft);
+    background: var(--card);
+    border-radius: var(--radius);
+    border: 1px dashed var(--line);
+  }
+  .empty strong { display: block; color: var(--ink); font-size: 16px; margin-bottom: 6px; }
 
-@media(max-width: 700px) {
-    .stats {
-        grid-template-columns: 1fr;
-    }
+  footer {
+    margin-top: 50px;
+    background: var(--navy-dark);
+    color: rgba(255,255,255,0.75);
+    padding: 26px 0;
+    text-align: center;
+    font-size: 12.5px;
+    line-height: 1.7;
+  }
 
-    header h1 {
-        font-size: 25px;
-    }
-}
+  @media (max-width: 700px) {
+    .stats { grid-template-columns: 1fr; margin-top: -18px; }
+    header { padding: 34px 0 40px; }
+    .controls input#search { flex: 1 1 100%; }
+  }
 </style>
 </head>
-
 <body>
 
 <header>
-<div class="container">
-
-<h1>Current Research Grant Calls</h1>
-
-<p>
-Research funding opportunities for faculty, researchers and students
-</p>
-
-<div class="updated">
-Last updated: <span id="updatedDate"></span>
-</div>
-
-</div>
+  <div class="container">
+    <div class="eyebrow">Live grant tracker</div>
+    <h1>Research Grant Deadlines</h1>
+    <p class="sub">Open funding calls for faculty, researchers and students — pulled automatically from our tracking sheet so the list stays current.</p>
+    <div class="updated"><span class="dot"></span>Last synced: <span id="updatedDate">—</span></div>
+  </div>
 </header>
-
 
 <main class="container">
 
-<div class="controls">
+  <div class="stats">
+    <div class="stat"><strong id="total">0</strong><span>Open calls</span></div>
+    <div class="stat urgent"><strong id="urgent">0</strong><span>Closing in ≤ 7 days</span></div>
+    <div class="stat month"><strong id="month">0</strong><span>Closing in ≤ 30 days</span></div>
+  </div>
 
-<input
-type="text"
-id="search"
-placeholder="Search grants..."
-onkeyup="filterGrants()">
+  <div id="loadingBanner" class="banner loading show">
+    <div class="spinner"></div> Fetching the latest grants from the tracking sheet…
+  </div>
+  <div id="errorBanner" class="banner error">
+    ⚠️ Couldn't reach the live sheet — showing the last saved list instead.
+  </div>
 
-<select id="agency" onchange="filterGrants()">
-<option value="">All Funding Agencies</option>
-<option value="ICMR">ICMR</option>
-<option value="ANRF">ANRF</option>
-<option value="DST">DST</option>
-<option value="DBT">DBT</option>
-<option value="BIRAC">BIRAC</option>
-</select>
+  <div class="controls">
+    <input type="text" id="search" placeholder="Search by title, agency or area…" onkeyup="filterGrants()">
+    <select id="agency" onchange="filterGrants()">
+      <option value="">All funding agencies</option>
+    </select>
+    <select id="area" onchange="filterGrants()">
+      <option value="">All research areas</option>
+    </select>
+    <select id="sort" onchange="filterGrants()">
+      <option value="deadline">Sort: Deadline (soonest)</option>
+      <option value="agency">Sort: Agency (A–Z)</option>
+      <option value="amount">Sort: Amount</option>
+    </select>
+  </div>
 
-<select id="area" onchange="filterGrants()">
-<option value="">All Research Areas</option>
-<option value="Biomedical">Biomedical</option>
-<option value="Biotechnology">Biotechnology</option>
-<option value="Chemistry">Chemistry</option>
-<option value="Engineering">Engineering</option>
-<option value="AI">AI</option>
-<option value="Public Health">Public Health</option>
-</select>
-
-</div>
-
-
-<div class="stats">
-
-<div class="stat">
-<strong id="total">0</strong>
-Open Calls
-</div>
-
-<div class="stat">
-<strong id="urgent">0</strong>
-Closing ≤ 7 Days
-</div>
-
-<div class="stat">
-<strong id="month">0</strong>
-Closing ≤ 30 Days
-</div>
-
-</div>
-
-
-<div id="grants" class="grants"></div>
+  <div id="grants" class="grants"></div>
 
 </main>
 
-
 <footer>
-
-Research Funding Opportunities Portal
-
-<br><br>
-
-Please verify all deadlines and eligibility requirements from the official funding-agency website before applying.
-
+  <div class="container">
+    Research Funding Opportunities Portal<br>
+    Please verify all deadlines and eligibility requirements on the official funding-agency website before applying.
+  </div>
 </footer>
 
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 <script>
+/* =========================================================
+   CONFIG — connect your Google Sheet
+   =========================================================
+   1. In Google Sheets: File > Share > Publish to web
+   2. Select the correct tab, choose CSV as the format, Publish
+   3. Paste that URL below as SHEET_CSV_URL
+   4. Your sheet's column headers should be (case-insensitive):
+      agency, title, area, amount, deadline, eligibility, url
+      deadline must be in YYYY-MM-DD format.
+   ========================================================= */
+const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRTbSy36czIddEoND7kqlXtFXYta8fe5ifsSZqGwQe6UVSBaYuboX7B65zTxxFUuWsu9hWoB8v3VGdz/pub?gid=0&single=true&output=csv";
 
-/*
-==========================================================
-GRANT DATABASE
-==========================================================
-
-Add new opportunities here.
-
-deadline format:
-YYYY-MM-DD
-==========================================================
-*/
-
-const grants = [
-
-{
-agency: "ICMR",
-title: "Example Biomedical Research Grant",
-area: "Biomedical",
-amount: "₹25–50 Lakh",
-deadline: "2026-09-15",
-eligibility: "Faculty / Researchers",
-url: "https://www.icmr.gov.in/"
-},
-
-{
-agency: "ANRF",
-title: "Example Research Grant",
-area: "Biotechnology",
-amount: "As per scheme",
-deadline: "2026-09-30",
-eligibility: "Eligible Researchers",
-url: "https://www.anrf.gov.in/"
-},
-
-{
-agency: "DST",
-title: "Example Science & Technology Call",
-area: "Engineering",
-amount: "As per scheme",
-deadline: "2026-10-15",
-eligibility: "Researchers / Faculty",
-url: "https://dst.gov.in/"
-}
-
+/* Fallback data, used if SHEET_CSV_URL is empty or the fetch fails */
+const fallbackGrants = [
+  { agency: "ICMR", title: "Example Biomedical Research Grant", area: "Biomedical", amount: "₹25–50 Lakh", deadline: "2026-09-15", eligibility: "Faculty / Researchers", url: "https://www.icmr.gov.in/" },
+  { agency: "ANRF", title: "Example Research Grant", area: "Biotechnology", amount: "As per scheme", deadline: "2026-09-30", eligibility: "Eligible Researchers", url: "https://www.anrf.gov.in/" },
+  { agency: "DST", title: "Example Science & Technology Call", area: "Engineering", amount: "As per scheme", deadline: "2026-10-15", eligibility: "Researchers / Faculty", url: "https://dst.gov.in/" }
 ];
 
-
-/* TODAY */
-
+let grants = [];
 const today = new Date();
+today.setHours(0,0,0,0);
 
-
-/* FORMAT DATE */
-
+/* ---------- helpers ---------- */
 function formatDate(date) {
-
-return new Date(date).toLocaleDateString(
-"en-IN",
-{
-day: "2-digit",
-month: "short",
-year: "numeric"
+  return new Date(date).toLocaleDateString("en-IN", { day: "2-digit", month: "short", year: "numeric" });
 }
-);
-
-}
-
-
-/* DAYS REMAINING */
 
 function daysRemaining(deadline) {
-
-const d = new Date(deadline);
-
-const difference =
-d.getTime() - today.getTime();
-
-return Math.ceil(
-difference / (1000 * 60 * 60 * 24)
-);
-
+  const d = new Date(deadline);
+  return Math.ceil((d.getTime() - today.getTime()) / 86400000);
 }
 
-
-/* STATUS */
+function countdownText(days) {
+  if (days === 0) return "Today";
+  if (days === 1) return "Tomorrow";
+  return `In ${days} days`;
+}
 
 function getStatus(days) {
-
-if (days <= 7) {
-
-return {
-text: "Closing Soon",
-class: "red"
-};
-
+  if (days <= 7) return { text: "Closing soon", class: "red" };
+  if (days <= 30) return { text: "Closing this month", class: "orange" };
+  return { text: "Open", class: "green" };
 }
 
-if (days <= 30) {
-
-return {
-text: "Closing This Month",
-class: "orange"
-};
-
+function parseAmountForSort(amount) {
+  const match = String(amount).replace(/,/g, "").match(/(\d+(\.\d+)?)/);
+  return match ? parseFloat(match[1]) : 0;
 }
 
-return {
-text: "Open",
-class: "green"
-};
+/* ---------- populate filter dropdowns from data ---------- */
+function populateFilters(list) {
+  const agencySel = document.getElementById("agency");
+  const areaSel = document.getElementById("area");
+  const agencies = [...new Set(list.map(g => g.agency))].sort();
+  const areas = [...new Set(list.map(g => g.area))].sort();
 
+  agencySel.innerHTML = '<option value="">All funding agencies</option>' +
+    agencies.map(a => `<option value="${a}">${a}</option>`).join("");
+  areaSel.innerHTML = '<option value="">All research areas</option>' +
+    areas.map(a => `<option value="${a}">${a}</option>`).join("");
 }
 
-
-/* DISPLAY GRANTS */
-
+/* ---------- render ---------- */
 function displayGrants(list) {
+  const container = document.getElementById("grants");
+  container.innerHTML = "";
 
-const container =
-document.getElementById("grants");
+  let urgent = 0, month = 0, openCount = 0;
 
-container.innerHTML = "";
+  list.forEach(grant => {
+    const days = daysRemaining(grant.deadline);
+    if (days < 0) return; // hide expired
+    openCount++;
+    if (days <= 7) urgent++;
+    if (days <= 30) month++;
 
-let urgent = 0;
-let month = 0;
+    const status = getStatus(days);
+    const card = document.createElement("div");
+    card.className = "card";
+    card.innerHTML = `
+      <div class="card-top">
+        <span class="agency">${grant.agency}</span>
+        <span class="badge ${status.class}">${status.text}</span>
+      </div>
+      <h2>${grant.title}</h2>
+      <div class="details">
+        <div class="row"><span>Research area</span><strong>${grant.area}</strong></div>
+        <div class="row"><span>Funding</span><strong>${grant.amount}</strong></div>
+        <div class="row"><span>Eligibility</span><strong>${grant.eligibility}</strong></div>
+        <div class="row"><span>Deadline</span><strong class="deadline-highlight">${formatDate(grant.deadline)}</strong></div>
+        <div class="row"><span>Time remaining</span><strong>${countdownText(days)}</strong></div>
+      </div>
+      <a class="button" href="${grant.url}" target="_blank" rel="noopener">View official call →</a>
+    `;
+    container.appendChild(card);
+  });
 
-list.forEach(grant => {
+  if (openCount === 0) {
+    container.innerHTML = `<div class="empty"><strong>No matching grants</strong>Try clearing your search or filters.</div>`;
+  }
 
-const days =
-daysRemaining(grant.deadline);
-
-
-/* Automatically ignore expired grants */
-
-if (days < 0) return;
-
-
-if (days <= 7) urgent++;
-
-if (days <= 30) month++;
-
-
-const status =
-getStatus(days);
-
-
-const card =
-document.createElement("div");
-
-card.className = "card";
-
-
-card.innerHTML = `
-
-<div class="agency">
-${grant.agency}
-</div>
-
-<h2>
-${grant.title}
-</h2>
-
-<span class="badge ${status.class}">
-${status.text}
-</span>
-
-<div class="details">
-
-<strong>Research Area:</strong>
-${grant.area}
-
-<br>
-
-<strong>Funding:</strong>
-${grant.amount}
-
-<br>
-
-<strong>Eligibility:</strong>
-${grant.eligibility}
-
-<br>
-
-<strong>Deadline:</strong>
-${formatDate(grant.deadline)}
-
-<br>
-
-<strong>Time Remaining:</strong>
-${days} day(s)
-
-</div>
-
-<a
-class="button"
-href="${grant.url}"
-target="_blank">
-
-View Official Call →
-
-</a>
-
-`;
-
-container.appendChild(card);
-
-});
-
-
-document.getElementById("total").innerText =
-list.filter(g => daysRemaining(g.deadline) >= 0).length;
-
-document.getElementById("urgent").innerText =
-urgent;
-
-document.getElementById("month").innerText =
-month;
-
+  document.getElementById("total").innerText = openCount;
+  document.getElementById("urgent").innerText = urgent;
+  document.getElementById("month").innerText = month;
 }
 
-
-/* SEARCH + FILTER */
-
+/* ---------- filter + sort ---------- */
 function filterGrants() {
+  const search = document.getElementById("search").value.toLowerCase();
+  const agency = document.getElementById("agency").value;
+  const area = document.getElementById("area").value;
+  const sortBy = document.getElementById("sort").value;
 
-const search =
-document.getElementById("search")
-.value
-.toLowerCase();
+  let filtered = grants.filter(grant =>
+    (grant.title.toLowerCase().includes(search) ||
+     grant.agency.toLowerCase().includes(search) ||
+     grant.area.toLowerCase().includes(search)) &&
+    (agency === "" || grant.agency === agency) &&
+    (area === "" || grant.area === area)
+  );
 
-const agency =
-document.getElementById("agency")
-.value;
+  if (sortBy === "deadline") {
+    filtered.sort((a, b) => new Date(a.deadline) - new Date(b.deadline));
+  } else if (sortBy === "agency") {
+    filtered.sort((a, b) => a.agency.localeCompare(b.agency));
+  } else if (sortBy === "amount") {
+    filtered.sort((a, b) => parseAmountForSort(b.amount) - parseAmountForSort(a.amount));
+  }
 
-const area =
-document.getElementById("area")
-.value;
-
-
-const filtered =
-grants.filter(grant => {
-
-return (
-
-(
-grant.title.toLowerCase()
-.includes(search)
-
-||
-
-grant.agency.toLowerCase()
-.includes(search)
-
-||
-
-grant.area.toLowerCase()
-.includes(search)
-)
-
-&&
-
-(agency === "" ||
-grant.agency === agency)
-
-&&
-
-(area === "" ||
-grant.area === area)
-
-);
-
-});
-
-
-displayGrants(filtered);
-
+  displayGrants(filtered);
 }
 
-
-/* LAST UPDATED */
-
-document.getElementById("updatedDate")
-.innerText =
-new Date().toLocaleDateString(
-"en-IN",
-{
-day: "2-digit",
-month: "long",
-year: "numeric"
+/* ---------- data loading ---------- */
+function normalizeRow(row) {
+  // Case-insensitive header lookup, tolerant of extra spaces
+  const get = (key) => {
+    const found = Object.keys(row).find(k => k.trim().toLowerCase() === key);
+    return found ? String(row[found]).trim() : "";
+  };
+  return {
+    agency: get("agency"),
+    title: get("title"),
+    area: get("area"),
+    amount: get("amount"),
+    deadline: get("deadline"),
+    eligibility: get("eligibility"),
+    url: get("url") || "#"
+  };
 }
-);
 
+function finishLoading(list, usedFallback) {
+  grants = list;
+  populateFilters(grants);
+  filterGrants();
+  document.getElementById("updatedDate").innerText =
+    new Date().toLocaleDateString("en-IN", { day: "2-digit", month: "long", year: "numeric", hour: "2-digit", minute: "2-digit" });
+  document.getElementById("loadingBanner").classList.remove("show");
+  document.getElementById("errorBanner").classList.toggle("show", usedFallback);
+}
 
-/* INITIAL LOAD */
+function loadGrants() {
+  if (!SHEET_CSV_URL) {
+    finishLoading(fallbackGrants, false);
+    document.getElementById("loadingBanner").classList.remove("show");
+    return;
+  }
 
-displayGrants(grants);
+  Papa.parse(SHEET_CSV_URL, {
+    download: true,
+    header: true,
+    skipEmptyLines: true,
+    complete: function(results) {
+      const rows = results.data.map(normalizeRow).filter(r => r.title && r.deadline);
+      if (rows.length === 0) {
+        finishLoading(fallbackGrants, true);
+      } else {
+        finishLoading(rows, false);
+      }
+    },
+    error: function() {
+      finishLoading(fallbackGrants, true);
+    }
+  });
+}
 
+loadGrants();
 </script>
-
 </body>
 </html>
