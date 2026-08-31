@@ -1088,7 +1088,7 @@ function finishLoading(list, usedFallback) {
   const dot = document.getElementById("statusDot");
   const text = document.getElementById("statusText");
   dot.classList.toggle("err", usedFallback);
-  text.textContent = usedFallback ? "Showing saved data — live sheet unreachable" : "Synced live from Google Sheets";
+  text.textContent = usedFallback ? "Showing saved data — live sheet unreachable" : "Synced live";
 }
 
 function loadGrants() {
