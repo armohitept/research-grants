@@ -3,28 +3,37 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Research Grant Deadlines</title>
+<title>Research Funding Opportunities</title>
+<meta name="description" content="Live grant, fellowship and research funding opportunities for faculty, researchers and students.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --navy: #17365d;
-    --navy-dark: #0f2440;
-    --gold: #b8860b;
-    --gold-light: #f4e9d0;
-    --bg: #f3f4f7;
+    --navy: #17325a;
+    --navy-dark: #0d1e38;
+    --navy-soft: #eef1f6;
+    --gold: #a9781f;
+    --gold-soft: #f5ecd6;
+    --bg: #f2f3f6;
     --card: #ffffff;
-    --ink: #1f2937;
-    --ink-soft: #5b6474;
+    --ink: #1f2430;
+    --ink-soft: #5c6577;
+    --ink-faint: #8a91a1;
     --line: #e2e5eb;
-    --red-bg: #fde8e8; --red-ink: #9b1c1c; --red-dot:#dc2626;
-    --orange-bg: #fdecd8; --orange-ink: #92400e; --orange-dot:#ea8a1a;
-    --green-bg: #e0f2e6; --green-ink: #166534; --green-dot:#16a34a;
+
+    --red-bg: #fde8e8;   --red-ink: #9b1c1c;   --red-dot: #dc2626;
+    --orange-bg: #fdecd8; --orange-ink: #92400e; --orange-dot: #ea8a1a;
+    --green-bg: #e0f2e6;  --green-ink: #166534;  --green-dot: #16a34a;
+    --blue-bg: #e3ecfb;   --blue-ink: #1d4ed8;   --blue-dot: #3b6fe0;
+    --slate-bg: #eceef2;  --slate-ink: #4b5468;  --slate-dot: #8a91a1;
+
     --radius: 14px;
+    --radius-sm: 9px;
   }
 
   * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
 
   body {
     margin: 0;
@@ -32,140 +41,223 @@
     background: var(--bg);
     color: var(--ink);
     -webkit-font-smoothing: antialiased;
+    font-size: 15px;
   }
 
-  h1, h2, .brand { font-family: 'Source Serif 4', Georgia, serif; }
+  h1, h2, h3, .serif { font-family: 'Source Serif 4', Georgia, serif; }
 
   a { color: inherit; }
+  button { font-family: inherit; cursor: pointer; }
+  :focus-visible { outline: 2px solid var(--navy); outline-offset: 2px; }
 
-  .container { max-width: 1180px; margin: 0 auto; padding: 0 20px; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+  .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
   /* ---------- Header ---------- */
   header {
-    background: linear-gradient(155deg, var(--navy) 0%, var(--navy-dark) 100%);
+    background: linear-gradient(160deg, var(--navy) 0%, var(--navy-dark) 100%);
     color: white;
-    padding: 44px 0 34px;
+    padding: 40px 0 96px;
     position: relative;
-    overflow: hidden;
   }
-  header::after {
-    content: "";
-    position: absolute;
-    right: -60px; top: -80px;
-    width: 320px; height: 320px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(184,134,11,0.18), transparent 70%);
-  }
-  .eyebrow {
+  .status-pill {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    font-size: 12px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--gold-light);
-    opacity: 0.9;
-    margin-bottom: 14px;
+    gap: 7px;
+    font-size: 12.5px;
+    color: rgba(255,255,255,0.85);
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.14);
+    padding: 5px 12px 5px 9px;
+    border-radius: 20px;
+    margin-bottom: 18px;
   }
-  .eyebrow::before {
-    content: "";
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    background: #e0b84a;
-    display: inline-block;
-  }
+  .status-pill .dot { width: 6px; height: 6px; border-radius: 50%; background: #4ade80; flex-shrink: 0; }
+  .status-pill .dot.err { background: #f87171; }
   header h1 {
     margin: 0 0 10px;
-    font-size: clamp(28px, 4vw, 38px);
+    font-size: clamp(28px, 4vw, 40px);
     font-weight: 600;
     line-height: 1.15;
   }
   header p.sub {
     margin: 0;
-    max-width: 640px;
-    opacity: 0.85;
+    max-width: 620px;
+    opacity: 0.82;
     font-size: 15.5px;
-    line-height: 1.6;
+    line-height: 1.65;
   }
   .updated {
-    margin-top: 20px;
+    margin-top: 18px;
     font-size: 12.5px;
-    opacity: 0.75;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .updated .dot {
-    width: 6px; height: 6px; border-radius: 50%;
-    background: #4ade80;
+    opacity: 0.65;
   }
 
-  main { padding-bottom: 60px; }
+  main { padding-bottom: 70px; }
 
   /* ---------- Stats ---------- */
   .stats {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 14px;
-    margin: -26px 0 24px;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 12px;
+    margin: -66px 0 30px;
     position: relative;
     z-index: 2;
   }
   .stat {
     background: var(--card);
-    padding: 20px 18px;
+    padding: 18px 16px;
     border-radius: var(--radius);
-    box-shadow: 0 8px 24px rgba(15, 36, 64, 0.08);
+    box-shadow: 0 10px 26px rgba(13, 30, 56, 0.10);
     border: 1px solid var(--line);
   }
   .stat strong {
     display: block;
     font-family: 'Source Serif 4', serif;
-    font-size: 30px;
+    font-size: 26px;
     font-weight: 600;
     color: var(--navy);
     margin-bottom: 2px;
   }
-  .stat span { font-size: 13px; color: var(--ink-soft); }
+  .stat span { font-size: 12px; color: var(--ink-soft); line-height: 1.3; display: block; }
   .stat.urgent strong { color: var(--red-dot); }
   .stat.month strong { color: var(--orange-dot); }
+  .stat.new strong { color: var(--blue-ink); }
+
+  /* ---------- Audience switcher ---------- */
+  .audience-section { margin-bottom: 26px; }
+  .audience-section h2 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ink-soft);
+    margin: 0 0 10px;
+    font-family: 'Inter', sans-serif;
+  }
+  .audience-tabs {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+  }
+  .audience-tab {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    padding: 13px 12px;
+    text-align: left;
+    transition: border-color .15s ease, box-shadow .15s ease;
+  }
+  .audience-tab .aud-name { display: block; font-weight: 600; font-size: 13.5px; color: var(--ink); margin-bottom: 2px; }
+  .audience-tab .aud-count { display: block; font-size: 12px; color: var(--ink-faint); }
+  .audience-tab:hover { border-color: var(--navy); }
+  .audience-tab.active {
+    background: var(--navy);
+    border-color: var(--navy);
+    box-shadow: 0 6px 16px rgba(23,50,90,0.22);
+  }
+  .audience-tab.active .aud-name { color: white; }
+  .audience-tab.active .aud-count { color: rgba(255,255,255,0.75); }
 
   /* ---------- Controls ---------- */
   .controls {
     background: var(--card);
-    padding: 18px;
+    padding: 16px;
     border-radius: var(--radius);
     border: 1px solid var(--line);
+    margin-bottom: 10px;
+  }
+  .controls-row {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    margin-bottom: 26px;
   }
   .controls input,
   .controls select {
-    padding: 11px 13px;
+    padding: 10px 12px;
     border: 1px solid var(--line);
-    border-radius: 9px;
-    font-size: 14px;
+    border-radius: var(--radius-sm);
+    font-size: 13.5px;
     font-family: inherit;
     background: #fbfbfd;
     color: var(--ink);
   }
-  .controls input:focus,
-  .controls select:focus {
-    outline: 2px solid var(--navy);
-    outline-offset: 1px;
-    background: white;
+  .controls input:focus, .controls select:focus { background: white; }
+  .controls input#search { flex: 2 1 220px; }
+  .controls select { flex: 1 1 150px; }
+
+  .more-toggle {
+    background: none;
+    border: none;
+    color: var(--navy);
+    font-size: 13px;
+    font-weight: 600;
+    padding: 10px 2px 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
   }
-  .controls input#search { flex: 2 1 240px; }
-  .controls select { flex: 1 1 160px; }
+  .more-toggle svg { transition: transform .15s ease; width: 12px; height: 12px; }
+  .more-toggle.open svg { transform: rotate(180deg); }
+
+  .more-filters {
+    display: none;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--line);
+  }
+  .more-filters.show { display: grid; }
+  .save-only {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 13px;
+    color: var(--ink-soft);
+    padding: 10px 4px;
+  }
+
+  .controls-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+  }
+  .result-count { font-size: 13px; color: var(--ink-soft); }
+  .reset-btn {
+    background: var(--navy-soft);
+    color: var(--navy);
+    border: none;
+    padding: 8px 14px;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .reset-btn:hover { background: #e1e6f0; }
+
+  .section-gap { margin-top: 32px; margin-bottom: 30px; }
+
+  /* ---------- Section headings ---------- */
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 14px;
+  }
+  .section-head h2 {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+  }
+  .section-head span.count { font-size: 12.5px; color: var(--ink-faint); }
 
   /* ---------- Status banners ---------- */
   .banner {
-    padding: 13px 16px;
-    border-radius: 10px;
+    padding: 12px 16px;
+    border-radius: var(--radius-sm);
     font-size: 13.5px;
-    margin-bottom: 20px;
+    margin-bottom: 18px;
     display: none;
     align-items: center;
     gap: 10px;
@@ -186,134 +278,214 @@
   /* ---------- Grant cards ---------- */
   .grants {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 18px;
+    grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+    gap: 16px;
   }
+  .grants.featured-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+
   .card {
     background: var(--card);
     border-radius: var(--radius);
-    padding: 22px;
+    padding: 20px;
     border: 1px solid var(--line);
-    box-shadow: 0 2px 10px rgba(15, 36, 64, 0.04);
+    box-shadow: 0 2px 8px rgba(15, 36, 64, 0.04);
     display: flex;
     flex-direction: column;
-    transition: box-shadow 0.15s ease, transform 0.15s ease;
   }
-  .card:hover {
-    box-shadow: 0 10px 26px rgba(15, 36, 64, 0.10);
-    transform: translateY(-2px);
-  }
+  .card.is-featured { border-color: var(--gold); box-shadow: 0 4px 14px rgba(169,120,31,0.12); }
+  .card.is-expired { opacity: 0.82; }
+
   .card-top {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    gap: 10px;
+    gap: 8px;
   }
+  .card-top-left { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
   .agency {
     font-weight: 700;
     color: var(--navy);
-    font-size: 12.5px;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    background: #eef1f6;
+    font-size: 12px;
+    letter-spacing: 0.03em;
+    background: var(--navy-soft);
     padding: 4px 10px;
     border-radius: 20px;
   }
+  .star-btn {
+    background: none;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    width: 30px; height: 30px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--ink-faint);
+    flex-shrink: 0;
+  }
+  .star-btn svg { width: 15px; height: 15px; }
+  .star-btn.saved { color: var(--gold); border-color: var(--gold-soft); background: var(--gold-soft); }
+
   .badge {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    padding: 5px 10px;
+    padding: 4px 10px;
     border-radius: 20px;
     font-size: 11.5px;
     font-weight: 700;
-    letter-spacing: 0.02em;
     white-space: nowrap;
   }
-  .badge::before {
-    content: "";
-    width: 6px; height: 6px;
-    border-radius: 50%;
-  }
-  .red { background: var(--red-bg); color: var(--red-ink); }
-  .red::before { background: var(--red-dot); }
-  .orange { background: var(--orange-bg); color: var(--orange-ink); }
-  .orange::before { background: var(--orange-dot); }
-  .green { background: var(--green-bg); color: var(--green-ink); }
-  .green::before { background: var(--green-dot); }
+  .badge::before { content: ""; width: 6px; height: 6px; border-radius: 50%; }
+  .red { background: var(--red-bg); color: var(--red-ink); } .red::before { background: var(--red-dot); }
+  .orange { background: var(--orange-bg); color: var(--orange-ink); } .orange::before { background: var(--orange-dot); }
+  .green { background: var(--green-bg); color: var(--green-ink); } .green::before { background: var(--green-dot); }
+  .blue { background: var(--blue-bg); color: var(--blue-ink); } .blue::before { background: var(--blue-dot); }
+  .slate { background: var(--slate-bg); color: var(--slate-ink); } .slate::before { background: var(--slate-dot); }
 
-  .card h2 {
-    margin: 14px 0 4px;
-    font-size: 19px;
+  .card h3.title {
+    margin: 13px 0 6px;
+    font-size: 18px;
     font-weight: 600;
     line-height: 1.35;
     color: var(--ink);
   }
+  .tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+  .tag { font-size: 11.5px; color: var(--ink-soft); background: var(--bg); border: 1px solid var(--line); padding: 3px 9px; border-radius: 20px; }
 
   .details {
-    margin: 12px 0 16px;
+    margin: 0 0 14px;
     font-size: 13.5px;
     color: var(--ink-soft);
-    line-height: 1.9;
+    line-height: 1.85;
     flex-grow: 1;
   }
   .details strong { color: var(--ink); font-weight: 600; }
   .details .row {
     display: flex;
     justify-content: space-between;
+    gap: 10px;
     border-bottom: 1px dashed var(--line);
     padding: 4px 0;
   }
   .details .row:last-child { border-bottom: none; }
+  .details .row span:first-child { flex-shrink: 0; }
+  .details .row strong { text-align: right; }
 
-  .deadline-highlight {
-    font-family: 'Source Serif 4', serif;
-    font-weight: 600;
-    color: var(--navy);
+  .deadline-highlight { font-family: 'Source Serif 4', serif; font-weight: 600; color: var(--navy); }
+
+  .verified-line {
+    font-size: 11.5px;
+    color: var(--ink-faint);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
   }
+  .verified-line svg { width: 12px; height: 12px; color: var(--green-dot); flex-shrink: 0; }
 
-  .button {
+  .card-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; }
+  .button, .button-secondary, .share-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 6px;
-    background: var(--navy);
-    color: white;
     text-decoration: none;
-    padding: 11px 16px;
-    border-radius: 9px;
-    font-size: 13.5px;
+    padding: 9px 13px;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
     font-weight: 600;
-    transition: background 0.15s ease;
+    border: none;
+    flex: 1 1 auto;
+    white-space: nowrap;
   }
+  .button { background: var(--navy); color: white; }
   .button:hover { background: var(--navy-dark); }
+  .button-secondary { background: var(--navy-soft); color: var(--navy); }
+  .button-secondary:hover { background: #e1e6f0; }
+  .share-btn { background: transparent; color: var(--ink-soft); border: 1px solid var(--line); flex: 0 0 auto; padding: 9px 11px; }
+  .share-btn:hover { border-color: var(--navy); color: var(--navy); }
 
-  /* ---------- Empty state ---------- */
+  /* ---------- Empty / error state ---------- */
   .empty {
     grid-column: 1 / -1;
     text-align: center;
-    padding: 60px 20px;
+    padding: 56px 20px;
     color: var(--ink-soft);
     background: var(--card);
     border-radius: var(--radius);
     border: 1px dashed var(--line);
   }
   .empty strong { display: block; color: var(--ink); font-size: 16px; margin-bottom: 6px; }
+  .empty button {
+    margin-top: 14px;
+    background: var(--navy);
+    color: white;
+    border: none;
+    padding: 9px 16px;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  /* ---------- Archive toggle ---------- */
+  .archive-toggle-wrap { text-align: center; margin-top: 6px; }
+  .archive-toggle {
+    background: var(--card);
+    border: 1px solid var(--line);
+    color: var(--ink-soft);
+    padding: 11px 20px;
+    border-radius: 30px;
+    font-size: 13.5px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+  }
+  .archive-toggle:hover { border-color: var(--navy); color: var(--navy); }
+  .archive-toggle svg { width: 13px; height: 13px; transition: transform .15s ease; }
+  .archive-toggle.open svg { transform: rotate(180deg); }
+  #archiveWrap { display: none; margin-top: 20px; }
+  #archiveWrap.show { display: block; }
+  #archiveWrap .grants { opacity: 0.92; }
 
   footer {
-    margin-top: 50px;
+    margin-top: 54px;
     background: var(--navy-dark);
-    color: rgba(255,255,255,0.75);
+    color: rgba(255,255,255,0.7);
     padding: 26px 0;
     text-align: center;
     font-size: 12.5px;
     line-height: 1.7;
   }
 
-  @media (max-width: 700px) {
-    .stats { grid-template-columns: 1fr; margin-top: -18px; }
-    header { padding: 34px 0 40px; }
+  .toast {
+    position: fixed;
+    bottom: 22px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: var(--navy-dark);
+    color: white;
+    padding: 11px 20px;
+    border-radius: 30px;
+    font-size: 13.5px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .2s ease, transform .2s ease;
+    z-index: 50;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); pointer-events: auto; }
+
+  @media (max-width: 900px) {
+    .stats { grid-template-columns: repeat(3, 1fr); }
+    .audience-tabs { grid-template-columns: repeat(3, 1fr); }
+    .more-filters { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 640px) {
+    header { padding: 34px 0 110px; }
+    .stats { grid-template-columns: repeat(2, 1fr); margin-top: -80px; }
+    .audience-tabs { grid-template-columns: repeat(2, 1fr); }
     .controls input#search { flex: 1 1 100%; }
+    .more-filters { grid-template-columns: 1fr; }
+    .section-head { flex-direction: column; align-items: flex-start; gap: 4px; }
   }
 </style>
 </head>
@@ -321,44 +493,112 @@
 
 <header>
   <div class="container">
-    <div class="eyebrow">Live grant tracker</div>
-    <h1>Research Grant Deadlines</h1>
-    <p class="sub">Open funding calls for faculty, researchers and students — pulled automatically from our tracking sheet so the list stays current.</p>
-    <div class="updated"><span class="dot"></span>Last synced: <span id="updatedDate">—</span></div>
+    <div class="status-pill" id="statusPill"><span class="dot" id="statusDot"></span><span id="statusText">Syncing with Google Sheets…</span></div>
+    <h1>Research Funding Opportunities</h1>
+    <p class="sub">Live grant, fellowship and research funding opportunities for faculty, researchers and students.</p>
+    <div class="updated">Last synced: <span id="updatedDate">—</span></div>
   </div>
 </header>
 
 <main class="container">
 
   <div class="stats">
-    <div class="stat"><strong id="total">0</strong><span>Open calls</span></div>
-    <div class="stat urgent"><strong id="urgent">0</strong><span>Closing in ≤ 7 days</span></div>
-    <div class="stat month"><strong id="month">0</strong><span>Closing in ≤ 30 days</span></div>
+    <div class="stat"><strong id="statTotal">0</strong><span>Open calls</span></div>
+    <div class="stat urgent"><strong id="statUrgent">0</strong><span>Closing ≤7 days</span></div>
+    <div class="stat month"><strong id="statMonth">0</strong><span>Closing ≤30 days</span></div>
+    <div class="stat new"><strong id="statNew">0</strong><span>Newly added</span></div>
+    <div class="stat"><strong id="statGrants">0</strong><span>Research grants</span></div>
+    <div class="stat"><strong id="statFellowships">0</strong><span>Fellowships</span></div>
   </div>
 
-  <div id="loadingBanner" class="banner loading show">
-    <div class="spinner"></div> Fetching the latest grants from the tracking sheet…
+  <div id="loadingBanner" class="banner loading show" role="status">
+    <div class="spinner"></div> Fetching the latest opportunities from the tracking sheet…
   </div>
-  <div id="errorBanner" class="banner error">
-    ⚠️ Couldn't reach the live sheet — showing the last saved list instead.
+  <div id="errorBanner" class="banner error" role="alert">
+    Could not reach the live sheet. Showing the last saved list instead.
+  </div>
+
+  <div class="audience-section">
+    <h2>Who are you?</h2>
+    <div class="audience-tabs" id="audienceTabs" role="tablist"></div>
   </div>
 
   <div class="controls">
-    <input type="text" id="search" placeholder="Search by title, agency or area…" onkeyup="filterGrants()">
-    <select id="agency" onchange="filterGrants()">
-      <option value="">All funding agencies</option>
-    </select>
-    <select id="area" onchange="filterGrants()">
-      <option value="">All research areas</option>
-    </select>
-    <select id="sort" onchange="filterGrants()">
-      <option value="deadline">Sort: Deadline (soonest)</option>
-      <option value="agency">Sort: Agency (A–Z)</option>
-      <option value="amount">Sort: Amount</option>
-    </select>
+    <div class="controls-row">
+      <input type="text" id="search" placeholder="Search by title, agency, area or keyword…" aria-label="Search opportunities">
+      <select id="filterType" aria-label="Grant type"><option value="">All grant types</option></select>
+      <select id="filterAgency" aria-label="Funding agency"><option value="">All agencies</option></select>
+      <select id="filterArea" aria-label="Research area"><option value="">All research areas</option></select>
+      <select id="sortBy" aria-label="Sort by">
+        <option value="deadline">Sort: Deadline (soonest)</option>
+        <option value="newest">Sort: Newly added</option>
+        <option value="agency">Sort: Agency (A–Z)</option>
+        <option value="amount">Sort: Amount (highest)</option>
+        <option value="title">Sort: Title (A–Z)</option>
+      </select>
+    </div>
+
+    <button class="more-toggle" id="moreToggle" aria-expanded="false">
+      More filters
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+    </button>
+
+    <div class="more-filters" id="moreFilters">
+      <select id="filterSubArea" aria-label="Sub-area"><option value="">All sub-areas</option></select>
+      <select id="filterAmount" aria-label="Funding amount">
+        <option value="">Any funding amount</option>
+        <option value="under10">Under ₹10 Lakh</option>
+        <option value="10to50">₹10–50 Lakh</option>
+        <option value="over50">₹50 Lakh and above</option>
+      </select>
+      <select id="filterDeadline" aria-label="Deadline window">
+        <option value="">Any deadline</option>
+        <option value="7">Within 7 days</option>
+        <option value="30">Within 30 days</option>
+        <option value="90">Within 90 days</option>
+      </select>
+      <select id="filterStatus" aria-label="Status">
+        <option value="">Any status</option>
+        <option value="open">Open</option>
+        <option value="closing-soon">Closing soon</option>
+        <option value="closing-month">Closing this month</option>
+        <option value="extended">Extended</option>
+        <option value="coming-soon">Coming soon</option>
+      </select>
+      <label class="save-only"><input type="checkbox" id="savedOnly"> Show saved opportunities only</label>
+    </div>
+
+    <div class="controls-bottom">
+      <span class="result-count" id="resultCount"></span>
+      <button class="reset-btn" id="resetBtn">Clear filters</button>
+    </div>
   </div>
 
-  <div id="grants" class="grants"></div>
+  <div id="featuredSection" class="section-gap" style="display:none;">
+    <div class="section-head"><h2>Featured opportunities</h2></div>
+    <div id="featuredGrants" class="grants featured-grid"></div>
+  </div>
+
+  <div id="newSection" class="section-gap" style="display:none;">
+    <div class="section-head"><h2>Newly added</h2><span class="count" id="newCount"></span></div>
+    <div id="newGrants" class="grants featured-grid"></div>
+  </div>
+
+  <div class="section-gap">
+    <div class="section-head"><h2 id="mainHeading">Open opportunities</h2><span class="count" id="mainCount"></span></div>
+    <div id="grants" class="grants"></div>
+  </div>
+
+  <div class="archive-toggle-wrap">
+    <button class="archive-toggle" id="archiveToggle" aria-expanded="false">
+      View grant archive
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+    </button>
+  </div>
+  <div id="archiveWrap">
+    <div class="section-head"><h2>Archive · expired &amp; closed opportunities</h2><span class="count" id="archiveCount"></span></div>
+    <div id="archiveGrants" class="grants"></div>
+  </div>
 
 </main>
 
@@ -369,6 +609,8 @@
   </div>
 </footer>
 
+<div class="toast" id="toast"></div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 <script>
 /* =========================================================
@@ -377,161 +619,475 @@
    1. In Google Sheets: File > Share > Publish to web
    2. Select the correct tab, choose CSV as the format, Publish
    3. Paste that URL below as SHEET_CSV_URL
-   4. Your sheet's column headers should be (case-insensitive):
-      agency, title, area, amount, deadline, eligibility, url
-      deadline must be in YYYY-MM-DD format.
+   4. Recommended column headers (case-insensitive, extra spaces
+      and extra columns are fine):
+      id, agency, title, target_audience, grant_type, research_area,
+      sub_area, amount, deadline, eligibility, duration, date_added,
+      last_verified, status, featured, official_url, application_url,
+      document_url, guidelines_url, contact, keywords
+      Required at minimum: agency, title, deadline (YYYY-MM-DD).
    ========================================================= */
 const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRTbSy36czIddEoND7kqlXtFXYta8fe5ifsSZqGwQe6UVSBaYuboX7B65zTxxFUuWsu9hWoB8v3VGdz/pub?gid=0&single=true&output=csv";
 
-/* Fallback data, used if SHEET_CSV_URL is empty or the fetch fails */
+/* Fallback data — used only if SHEET_CSV_URL is empty or unreachable */
 const fallbackGrants = [
-  { agency: "ICMR", title: "Example Biomedical Research Grant", area: "Biomedical", amount: "₹25–50 Lakh", deadline: "2026-09-15", eligibility: "Faculty / Researchers", url: "https://www.icmr.gov.in/" },
-  { agency: "ANRF", title: "Example Research Grant", area: "Biotechnology", amount: "As per scheme", deadline: "2026-09-30", eligibility: "Eligible Researchers", url: "https://www.anrf.gov.in/" },
-  { agency: "DST", title: "Example Science & Technology Call", area: "Engineering", amount: "As per scheme", deadline: "2026-10-15", eligibility: "Researchers / Faculty", url: "https://dst.gov.in/" }
+  { id:"1", agency:"ICMR", title:"Cavitand-Based Biomedical Research Grant", target_audience:"Faculty / Researchers", grant_type:"Research Grant", research_area:"Biomedical", sub_area:"Molecular Diagnostics", amount:"₹50 Lakh+", deadline:"2026-09-05", eligibility:"Faculty at recognised institutions", duration:"3 years", date_added:"2026-08-20", last_verified:"2026-08-28", status:"", featured:"YES", official_url:"https://www.icmr.gov.in/", application_url:"", document_url:"", guidelines_url:"https://www.icmr.gov.in/", contact:"grants@icmr.gov.in", keywords:"biomedical, diagnostics" },
+  { id:"2", agency:"ANRF", title:"Early Career Research Fellowship", target_audience:"PhD & Postdoctoral", grant_type:"Fellowship", research_area:"Biotechnology", sub_area:"Genomics", amount:"₹35 Lakh", deadline:"2026-09-20", eligibility:"PhD awarded within last 5 years", duration:"2 years", date_added:"2026-08-15", last_verified:"2026-08-27", status:"", featured:"", official_url:"https://www.anrf.gov.in/", application_url:"https://www.anrf.gov.in/apply", document_url:"", guidelines_url:"", contact:"", keywords:"biotechnology, genomics" },
+  { id:"3", agency:"DST", title:"Women Scientist Scheme — WOS-A", target_audience:"Faculty / Researchers", grant_type:"Research Grant", research_area:"Engineering", sub_area:"Materials Science", amount:"₹42 Lakh", deadline:"2026-10-15", eligibility:"Women researchers, career break considered", duration:"3 years", date_added:"2026-07-10", last_verified:"2026-08-25", status:"", featured:"", official_url:"https://dst.gov.in/", application_url:"", document_url:"https://dst.gov.in/guidelines.pdf", guidelines_url:"https://dst.gov.in/guidelines.pdf", contact:"", keywords:"materials, women in science" },
+  { id:"4", agency:"UGC", title:"Junior Research Fellowship (JRF)", target_audience:"Students", grant_type:"Scholarship", research_area:"Multidisciplinary", sub_area:"", amount:"₹37,000 / month", deadline:"2026-09-10", eligibility:"NET-qualified postgraduate students", duration:"5 years (renewable)", date_added:"2026-08-01", last_verified:"2026-08-20", status:"", featured:"", official_url:"https://www.ugc.gov.in/", application_url:"https://www.ugc.gov.in/jrf", document_url:"", guidelines_url:"", contact:"", keywords:"scholarship, students" },
+  { id:"5", agency:"CSIR", title:"International Conference Travel Grant", target_audience:"Faculty / Researchers, PhD & Postdoctoral", grant_type:"Travel Grant", research_area:"All Disciplines", sub_area:"", amount:"Up to ₹1.5 Lakh", deadline:"2026-09-03", eligibility:"Presenting author at an indexed conference", duration:"One-time", date_added:"2026-08-28", last_verified:"2026-08-29", status:"", featured:"", official_url:"https://www.csir.res.in/", application_url:"", document_url:"", guidelines_url:"", contact:"", keywords:"travel, conference" },
+  { id:"6", agency:"SERB", title:"Startup Research Grant for Young Scientists", target_audience:"Faculty / Researchers", grant_type:"Seed Grant", research_area:"Innovation / Technology", sub_area:"Applied AI", amount:"₹30 Lakh", deadline:"2026-11-30", eligibility:"Faculty within 5 years of first appointment", duration:"2 years", date_added:"2026-08-05", last_verified:"2026-08-22", status:"", featured:"YES", official_url:"https://www.serbonline.in/", application_url:"", document_url:"", guidelines_url:"", contact:"", keywords:"seed grant, young researcher" },
+  { id:"7", agency:"DBT", title:"India-UK Collaborative Life Sciences Grant", target_audience:"Institutions", grant_type:"International Collaboration", research_area:"Life Sciences", sub_area:"", amount:"₹1.2 Crore", deadline:"2026-08-25", eligibility:"Joint proposals with a UK partner institution", duration:"3 years", date_added:"2026-06-01", last_verified:"2026-08-10", status:"Expired", featured:"", official_url:"https://dbtindia.gov.in/", application_url:"", document_url:"", guidelines_url:"", contact:"", keywords:"collaboration, life sciences" },
+  { id:"8", agency:"AICTE", title:"Institutional Research Infrastructure Grant", target_audience:"Institutions", grant_type:"Equipment / Instrumentation", research_area:"Engineering", sub_area:"", amount:"₹75 Lakh", deadline:"2026-12-01", eligibility:"AICTE-approved institutions", duration:"One-time", date_added:"2026-07-22", last_verified:"2026-08-18", status:"", featured:"", official_url:"https://www.aicte-india.org/", application_url:"", document_url:"", guidelines_url:"", contact:"", keywords:"infrastructure, institution" },
+  { id:"9", agency:"ICSSR", title:"Doctoral Fellowship in Social Sciences", target_audience:"PhD & Postdoctoral, Students", grant_type:"Fellowship", research_area:"Social Sciences", sub_area:"", amount:"₹31,000 / month", deadline:"2026-09-30", eligibility:"Registered PhD scholars", duration:"2 years", date_added:"2026-08-12", last_verified:"2026-08-26", status:"Extended", featured:"", official_url:"https://icssr.org/", application_url:"", document_url:"", guidelines_url:"", contact:"", keywords:"social science, doctoral" },
+  { id:"10", agency:"Rajiv Gandhi Science Talent Trust", title:"Undergraduate Research Internship", target_audience:"Students", grant_type:"Student Research", research_area:"Multidisciplinary", sub_area:"", amount:"₹15,000 / month", deadline:"2027-01-15", eligibility:"Enrolled undergraduate students", duration:"3 months", date_added:"2026-08-29", last_verified:"2026-08-29", status:"Coming Soon", featured:"", official_url:"", application_url:"", document_url:"", guidelines_url:"", contact:"", keywords:"internship, undergraduate" }
+];
+
+const AUDIENCES = [
+  { key: "", label: "All opportunities", match: () => true },
+  { key: "faculty", label: "Faculty & Researchers", match: t => t.includes("faculty") || t.includes("researcher") },
+  { key: "students", label: "Students", match: t => t.includes("student") },
+  { key: "phd", label: "PhD & Postdoctoral", match: t => t.includes("phd") || t.includes("postdoc") || t.includes("doctoral") },
+  { key: "institutions", label: "Institutions", match: t => t.includes("institution") || t.includes("department") }
 ];
 
 let grants = [];
+let currentAudience = "";
+let moreOpen = false;
+let archiveOpen = false;
 const today = new Date();
-today.setHours(0,0,0,0);
+today.setHours(0, 0, 0, 0);
+const SAVE_KEY = "grantPortal.savedIds";
 
-/* ---------- helpers ---------- */
-function formatDate(date) {
-  return new Date(date).toLocaleDateString("en-IN", { day: "2-digit", month: "short", year: "numeric" });
+/* ---------- small utilities ---------- */
+function getSavedIds() {
+  try { return new Set(JSON.parse(localStorage.getItem(SAVE_KEY) || "[]")); }
+  catch (e) { return new Set(); }
 }
-
+function setSavedIds(set) {
+  try { localStorage.setItem(SAVE_KEY, JSON.stringify([...set])); } catch (e) {}
+}
+function toggleSaved(id) {
+  const s = getSavedIds();
+  if (s.has(id)) s.delete(id); else s.add(id);
+  setSavedIds(s);
+}
+function slugify(str) {
+  return String(str).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+}
+function escapeHtml(str) {
+  return String(str ?? "").replace(/[&<>"']/g, m => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[m]));
+}
+function showToast(msg) {
+  const t = document.getElementById("toast");
+  t.textContent = msg;
+  t.classList.add("show");
+  clearTimeout(showToast._timer);
+  showToast._timer = setTimeout(() => t.classList.remove("show"), 1800);
+}
+function isValidDate(d) { return d instanceof Date && !isNaN(d); }
+function formatDate(dateStr, opts) {
+  const d = new Date(dateStr);
+  if (!isValidDate(d)) return "—";
+  return d.toLocaleDateString("en-IN", opts || { day: "2-digit", month: "short", year: "numeric" });
+}
 function daysRemaining(deadline) {
   const d = new Date(deadline);
+  if (!isValidDate(d)) return null;
   return Math.ceil((d.getTime() - today.getTime()) / 86400000);
 }
-
 function countdownText(days) {
-  if (days === 0) return "Today";
-  if (days === 1) return "Tomorrow";
-  return `In ${days} days`;
+  if (days === null) return "—";
+  if (days < 0) return "Closed";
+  if (days === 0) return "Closes today";
+  if (days === 1) return "Closes tomorrow";
+  return `${days} days remaining`;
 }
-
-function getStatus(days) {
-  if (days <= 7) return { text: "Closing soon", class: "red" };
-  if (days <= 30) return { text: "Closing this month", class: "orange" };
-  return { text: "Open", class: "green" };
-}
-
 function parseAmountForSort(amount) {
   const match = String(amount).replace(/,/g, "").match(/(\d+(\.\d+)?)/);
-  return match ? parseFloat(match[1]) : 0;
+  if (!match) return 0;
+  let val = parseFloat(match[1]);
+  const lower = String(amount).toLowerCase();
+  if (lower.includes("crore")) val *= 100; // normalize to lakh scale
+  return val;
+}
+function amountBucket(amount) {
+  const val = parseAmountForSort(amount);
+  if (!val) return "";
+  if (val < 10) return "under10";
+  if (val <= 50) return "10to50";
+  return "over50";
 }
 
-/* ---------- populate filter dropdowns from data ---------- */
+/* ---------- status logic ---------- */
+function computeStatus(grant) {
+  const explicit = String(grant.status || "").trim().toLowerCase();
+  const days = daysRemaining(grant.deadline);
+
+  if (explicit === "cancelled" || explicit === "closed") {
+    return { key: "cancelled", label: "Cancelled", cls: "slate", archived: true };
+  }
+  if (explicit === "coming soon") {
+    return { key: "coming-soon", label: "Coming soon", cls: "blue", archived: false };
+  }
+  if (explicit === "extended") {
+    if (days !== null && days < 0) return { key: "expired", label: "Deadline passed", cls: "slate", archived: true };
+    return { key: "extended", label: "Extended deadline", cls: "blue", archived: false };
+  }
+  if (explicit === "expired" || (days !== null && days < 0)) {
+    return { key: "expired", label: "Expired", cls: "slate", archived: true };
+  }
+  if (days !== null && days <= 7) return { key: "closing-soon", label: "Closing soon", cls: "red", archived: false };
+  if (days !== null && days <= 30) return { key: "closing-month", label: "Closing this month", cls: "orange", archived: false };
+  return { key: "open", label: "Open", cls: "green", archived: false };
+}
+
+/* ---------- normalize a raw sheet row ---------- */
+function normalizeRow(row) {
+  const get = (key) => {
+    const found = Object.keys(row).find(k => k.trim().toLowerCase().replace(/\s+/g, "_") === key);
+    return found && row[found] !== undefined ? String(row[found]).trim() : "";
+  };
+  const agency = get("agency");
+  const title = get("title");
+  const deadline = get("deadline");
+  const g = {
+    id: get("id"),
+    agency, title,
+    target_audience: get("target_audience") || get("audience"),
+    grant_type: get("grant_type") || get("type"),
+    research_area: get("research_area") || get("area"),
+    sub_area: get("sub_area"),
+    amount: get("amount"),
+    deadline,
+    eligibility: get("eligibility"),
+    duration: get("duration"),
+    date_added: get("date_added"),
+    last_verified: get("last_verified"),
+    status: get("status"),
+    featured: get("featured"),
+    official_url: get("official_url") || get("url"),
+    application_url: get("application_url"),
+    document_url: get("document_url"),
+    guidelines_url: get("guidelines_url"),
+    contact: get("contact"),
+    keywords: get("keywords")
+  };
+  if (!g.id) g.id = slugify(`${agency}-${title}-${deadline}`);
+  return g;
+}
+
+/* ---------- populate dropdowns from data ---------- */
 function populateFilters(list) {
-  const agencySel = document.getElementById("agency");
-  const areaSel = document.getElementById("area");
-  const agencies = [...new Set(list.map(g => g.agency))].sort();
-  const areas = [...new Set(list.map(g => g.area))].sort();
-
-  agencySel.innerHTML = '<option value="">All funding agencies</option>' +
-    agencies.map(a => `<option value="${a}">${a}</option>`).join("");
-  areaSel.innerHTML = '<option value="">All research areas</option>' +
-    areas.map(a => `<option value="${a}">${a}</option>`).join("");
+  const fill = (selectEl, values, placeholder) => {
+    const current = selectEl.value;
+    const options = [...new Set(values.filter(Boolean))].sort();
+    selectEl.innerHTML = `<option value="">${placeholder}</option>` +
+      options.map(v => `<option value="${escapeHtml(v)}">${escapeHtml(v)}</option>`).join("");
+    if (options.includes(current)) selectEl.value = current;
+  };
+  fill(document.getElementById("filterType"), list.map(g => g.grant_type), "All grant types");
+  fill(document.getElementById("filterAgency"), list.map(g => g.agency), "All agencies");
+  fill(document.getElementById("filterArea"), list.map(g => g.research_area), "All research areas");
+  fill(document.getElementById("filterSubArea"), list.map(g => g.sub_area), "All sub-areas");
 }
 
-/* ---------- render ---------- */
-function displayGrants(list) {
-  const container = document.getElementById("grants");
-  container.innerHTML = "";
+/* ---------- audience tabs ---------- */
+function renderAudienceTabs(list) {
+  const wrap = document.getElementById("audienceTabs");
+  wrap.innerHTML = AUDIENCES.map(aud => {
+    const count = list.filter(g => {
+      const status = computeStatus(g);
+      if (status.archived) return false;
+      const t = (g.target_audience || "").toLowerCase();
+      return aud.match(t);
+    }).length;
+    return `<button class="audience-tab ${aud.key === currentAudience ? "active" : ""}" data-key="${aud.key}" role="tab" aria-selected="${aud.key === currentAudience}">
+      <span class="aud-name">${aud.label}</span>
+      <span class="aud-count">${count} open</span>
+    </button>`;
+  }).join("");
+  wrap.querySelectorAll(".audience-tab").forEach(btn => {
+    btn.addEventListener("click", () => {
+      currentAudience = btn.dataset.key;
+      renderAudienceTabs(grants);
+      applyFilters();
+    });
+  });
+}
 
-  let urgent = 0, month = 0, openCount = 0;
+/* ---------- card rendering ---------- */
+function linkButton(url, label, variant) {
+  if (!url) return "";
+  const cls = variant === "primary" ? "button" : "button-secondary";
+  return `<a class="${cls}" href="${escapeHtml(url)}" target="_blank" rel="noopener">${label}</a>`;
+}
 
-  list.forEach(grant => {
+function cardHtml(grant) {
+  const status = computeStatus(grant);
+  const days = daysRemaining(grant.deadline);
+  const saved = getSavedIds().has(grant.id);
+  const audiences = (grant.target_audience || "").split(/[,/]/).map(s => s.trim()).filter(Boolean);
+  const types = [grant.grant_type, grant.research_area].filter(Boolean);
+
+  return `
+  <div class="card ${grant.featured && grant.featured.toUpperCase() === "YES" ? "is-featured" : ""} ${status.archived ? "is-expired" : ""}" data-id="${grant.id}">
+    <div class="card-top">
+      <div class="card-top-left">
+        <span class="agency">${escapeHtml(grant.agency || "Funding agency")}</span>
+        <span class="badge ${status.cls}">${status.label}</span>
+      </div>
+      <button class="star-btn ${saved ? "saved" : ""}" data-save="${grant.id}" aria-pressed="${saved}" aria-label="Save this opportunity" title="Save">
+        <svg viewBox="0 0 24 24" fill="${saved ? "currentColor" : "none"}" stroke="currentColor" stroke-width="2"><path d="M12 3l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L12 16.9 6.4 20.1l1.4-6.3-4.8-4.3 6.4-.6z"/></svg>
+      </button>
+    </div>
+    <h3 class="title">${escapeHtml(grant.title || "Untitled opportunity")}</h3>
+    <div class="tag-row">
+      ${types.map(t => `<span class="tag">${escapeHtml(t)}</span>`).join("")}
+      ${audiences.map(a => `<span class="tag">${escapeHtml(a)}</span>`).join("")}
+    </div>
+    <div class="details">
+      ${grant.amount ? `<div class="row"><span>Funding</span><strong>${escapeHtml(grant.amount)}</strong></div>` : ""}
+      ${grant.eligibility ? `<div class="row"><span>Eligibility</span><strong>${escapeHtml(grant.eligibility)}</strong></div>` : ""}
+      <div class="row"><span>Deadline</span><strong class="deadline-highlight">${formatDate(grant.deadline)}</strong></div>
+      ${grant.duration ? `<div class="row"><span>Duration</span><strong>${escapeHtml(grant.duration)}</strong></div>` : ""}
+      <div class="row"><span>Time remaining</span><strong>${countdownText(days)}</strong></div>
+    </div>
+    ${grant.last_verified ? `<div class="verified-line"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M4 12l5 5L20 6"/></svg> Verified ${formatDate(grant.last_verified)}</div>` : ""}
+    <div class="card-actions">
+      ${linkButton(grant.official_url, "Official call", "primary")}
+      ${linkButton(grant.application_url, "Apply now", "secondary")}
+      ${linkButton(grant.guidelines_url || grant.document_url, "Guidelines", "secondary")}
+      <button class="share-btn" data-share="${grant.id}" aria-label="Copy opportunity details" title="Share">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 10.6l6.8-3.8M8.6 13.4l6.8 3.8"/></svg>
+      </button>
+    </div>
+  </div>`;
+}
+
+function attachCardHandlers(container) {
+  container.querySelectorAll("[data-save]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const id = btn.dataset.save;
+      toggleSaved(id);
+      applyFilters();
+    });
+  });
+  container.querySelectorAll("[data-share]").forEach(btn => {
+    btn.addEventListener("click", async () => {
+      const grant = grants.find(g => g.id === btn.dataset.share);
+      if (!grant) return;
+      const text = `${grant.title} — ${grant.agency}\nDeadline: ${formatDate(grant.deadline)}\n${grant.official_url || window.location.href}`;
+      try {
+        await navigator.clipboard.writeText(text);
+        showToast("Copied to clipboard");
+      } catch (e) {
+        showToast("Could not copy — copy manually");
+      }
+    });
+  });
+}
+
+function emptyStateHtml() {
+  return `<div class="empty"><strong>No matching opportunities found</strong>Try clearing your search or filters.<div><button id="emptyClear">Clear filters</button></div></div>`;
+}
+
+/* ---------- filtering pipeline ---------- */
+function passesFilters(grant, opts) {
+  const search = opts.search;
+  const t = (grant.target_audience || "").toLowerCase();
+  const audMatch = AUDIENCES.find(a => a.key === currentAudience);
+
+  if (currentAudience && audMatch && !audMatch.match(t)) return false;
+  if (opts.type && grant.grant_type !== opts.type) return false;
+  if (opts.agency && grant.agency !== opts.agency) return false;
+  if (opts.area && grant.research_area !== opts.area) return false;
+  if (opts.subArea && grant.sub_area !== opts.subArea) return false;
+  if (opts.amountBucket && amountBucket(grant.amount) !== opts.amountBucket) return false;
+  if (opts.savedOnly && !getSavedIds().has(grant.id)) return false;
+
+  const status = computeStatus(grant);
+  if (opts.status && status.key !== opts.status) return false;
+
+  if (opts.deadlineWindow) {
     const days = daysRemaining(grant.deadline);
-    if (days < 0) return; // hide expired
-    openCount++;
-    if (days <= 7) urgent++;
-    if (days <= 30) month++;
+    if (days === null || days < 0 || days > Number(opts.deadlineWindow)) return false;
+  }
 
-    const status = getStatus(days);
-    const card = document.createElement("div");
-    card.className = "card";
-    card.innerHTML = `
-      <div class="card-top">
-        <span class="agency">${grant.agency}</span>
-        <span class="badge ${status.class}">${status.text}</span>
-      </div>
-      <h2>${grant.title}</h2>
-      <div class="details">
-        <div class="row"><span>Research area</span><strong>${grant.area}</strong></div>
-        <div class="row"><span>Funding</span><strong>${grant.amount}</strong></div>
-        <div class="row"><span>Eligibility</span><strong>${grant.eligibility}</strong></div>
-        <div class="row"><span>Deadline</span><strong class="deadline-highlight">${formatDate(grant.deadline)}</strong></div>
-        <div class="row"><span>Duration</span><strong>${grant.duration}</strong></div>
-        <div class="row"><span>Time remaining</span><strong>${countdownText(days)}</strong></div>
-      </div>
-      <a class="button" href="${grant.url}" target="_blank" rel="noopener">View official call →</a>
-    `;
-    container.appendChild(card);
+  if (search) {
+    const hay = [grant.title, grant.agency, grant.research_area, grant.sub_area, grant.keywords, grant.grant_type]
+      .join(" ").toLowerCase();
+    if (!hay.includes(search)) return false;
+  }
+  return true;
+}
+
+function sortGrants(list, sortBy) {
+  const copy = [...list];
+  if (sortBy === "deadline") copy.sort((a, b) => new Date(a.deadline) - new Date(b.deadline));
+  else if (sortBy === "newest") copy.sort((a, b) => new Date(b.date_added || 0) - new Date(a.date_added || 0));
+  else if (sortBy === "agency") copy.sort((a, b) => (a.agency || "").localeCompare(b.agency || ""));
+  else if (sortBy === "amount") copy.sort((a, b) => parseAmountForSort(b.amount) - parseAmountForSort(a.amount));
+  else if (sortBy === "title") copy.sort((a, b) => (a.title || "").localeCompare(b.title || ""));
+  return copy;
+}
+
+function applyFilters() {
+  const opts = {
+    search: document.getElementById("search").value.trim().toLowerCase(),
+    type: document.getElementById("filterType").value,
+    agency: document.getElementById("filterAgency").value,
+    area: document.getElementById("filterArea").value,
+    subArea: document.getElementById("filterSubArea").value,
+    amountBucket: document.getElementById("filterAmount").value,
+    deadlineWindow: document.getElementById("filterDeadline").value,
+    status: document.getElementById("filterStatus").value,
+    savedOnly: document.getElementById("savedOnly").checked
+  };
+  const sortBy = document.getElementById("sortBy").value;
+
+  const matched = grants.filter(g => passesFilters(g, opts));
+  const active = sortGrants(matched.filter(g => !computeStatus(g).archived), sortBy);
+  const archived = sortGrants(matched.filter(g => computeStatus(g).archived), sortBy);
+
+  renderMain(active);
+  renderArchive(archived);
+  renderFeaturedAndNew(active);
+  renderStats(grants);
+  renderAudienceTabs(grants);
+
+  document.getElementById("resultCount").textContent =
+    `${active.length} open opportunit${active.length === 1 ? "y" : "ies"} matching your filters`;
+}
+
+/* ---------- section renderers ---------- */
+function renderMain(list) {
+  const container = document.getElementById("grants");
+  container.innerHTML = list.length ? list.map(cardHtml).join("") : emptyStateHtml();
+  document.getElementById("mainCount").textContent = list.length ? `${list.length} opportunities` : "";
+  attachCardHandlers(container);
+  const clearBtn = document.getElementById("emptyClear");
+  if (clearBtn) clearBtn.addEventListener("click", resetFilters);
+}
+
+function renderArchive(list) {
+  const container = document.getElementById("archiveGrants");
+  container.innerHTML = list.length
+    ? list.map(cardHtml).join("")
+    : `<div class="empty"><strong>Archive is empty</strong>No expired or closed opportunities match your filters.</div>`;
+  document.getElementById("archiveCount").textContent = `${list.length} opportunities`;
+  attachCardHandlers(container);
+}
+
+function renderFeaturedAndNew(activeList) {
+  const featured = activeList.filter(g => (g.featured || "").toUpperCase() === "YES");
+  const featuredSection = document.getElementById("featuredSection");
+  if (featured.length) {
+    featuredSection.style.display = "";
+    const c = document.getElementById("featuredGrants");
+    c.innerHTML = featured.map(cardHtml).join("");
+    attachCardHandlers(c);
+  } else {
+    featuredSection.style.display = "none";
+  }
+
+  const recent = activeList.filter(g => {
+    if (!g.date_added) return false;
+    const added = new Date(g.date_added);
+    if (!isValidDate(added)) return false;
+    const diff = Math.round((today - added) / 86400000);
+    return diff >= 0 && diff <= 7;
+  });
+  const newSection = document.getElementById("newSection");
+  if (recent.length) {
+    newSection.style.display = "";
+    const c = document.getElementById("newGrants");
+    c.innerHTML = recent.map(cardHtml).join("");
+    document.getElementById("newCount").textContent = `${recent.length} opportunities`;
+    attachCardHandlers(c);
+  } else {
+    newSection.style.display = "none";
+  }
+}
+
+function renderStats(list) {
+  const openList = list.filter(g => !computeStatus(g).archived);
+  const urgent = openList.filter(g => { const d = daysRemaining(g.deadline); return d !== null && d <= 7; }).length;
+  const month = openList.filter(g => { const d = daysRemaining(g.deadline); return d !== null && d <= 30; }).length;
+  const newly = openList.filter(g => {
+    if (!g.date_added) return false;
+    const added = new Date(g.date_added);
+    if (!isValidDate(added)) return false;
+    const diff = Math.round((today - added) / 86400000);
+    return diff >= 0 && diff <= 7;
+  }).length;
+  const researchGrants = openList.filter(g => (g.grant_type || "").toLowerCase().includes("research grant")).length;
+  const fellowships = openList.filter(g => (g.grant_type || "").toLowerCase().includes("fellowship")).length;
+
+  document.getElementById("statTotal").textContent = openList.length;
+  document.getElementById("statUrgent").textContent = urgent;
+  document.getElementById("statMonth").textContent = month;
+  document.getElementById("statNew").textContent = newly;
+  document.getElementById("statGrants").textContent = researchGrants;
+  document.getElementById("statFellowships").textContent = fellowships;
+}
+
+/* ---------- reset & UI wiring ---------- */
+function resetFilters() {
+  document.getElementById("search").value = "";
+  document.getElementById("filterType").value = "";
+  document.getElementById("filterAgency").value = "";
+  document.getElementById("filterArea").value = "";
+  document.getElementById("filterSubArea").value = "";
+  document.getElementById("filterAmount").value = "";
+  document.getElementById("filterDeadline").value = "";
+  document.getElementById("filterStatus").value = "";
+  document.getElementById("savedOnly").checked = false;
+  document.getElementById("sortBy").value = "deadline";
+  currentAudience = "";
+  applyFilters();
+}
+
+function wireControls() {
+  ["search"].forEach(id => document.getElementById(id).addEventListener("input", applyFilters));
+  ["filterType","filterAgency","filterArea","filterSubArea","filterAmount","filterDeadline","filterStatus","sortBy"]
+    .forEach(id => document.getElementById(id).addEventListener("change", applyFilters));
+  document.getElementById("savedOnly").addEventListener("change", applyFilters);
+  document.getElementById("resetBtn").addEventListener("click", resetFilters);
+
+  const moreToggle = document.getElementById("moreToggle");
+  moreToggle.addEventListener("click", () => {
+    moreOpen = !moreOpen;
+    moreToggle.classList.toggle("open", moreOpen);
+    moreToggle.setAttribute("aria-expanded", moreOpen);
+    document.getElementById("moreFilters").classList.toggle("show", moreOpen);
   });
 
-  if (openCount === 0) {
-    container.innerHTML = `<div class="empty"><strong>No matching grants</strong>Try clearing your search or filters.</div>`;
-  }
-
-  document.getElementById("total").innerText = openCount;
-  document.getElementById("urgent").innerText = urgent;
-  document.getElementById("month").innerText = month;
-}
-
-/* ---------- filter + sort ---------- */
-function filterGrants() {
-  const search = document.getElementById("search").value.toLowerCase();
-  const agency = document.getElementById("agency").value;
-  const area = document.getElementById("area").value;
-  const sortBy = document.getElementById("sort").value;
-
-  let filtered = grants.filter(grant =>
-    (grant.title.toLowerCase().includes(search) ||
-     grant.agency.toLowerCase().includes(search) ||
-     grant.area.toLowerCase().includes(search)) &&
-    (agency === "" || grant.agency === agency) &&
-    (area === "" || grant.area === area)
-  );
-
-  if (sortBy === "deadline") {
-    filtered.sort((a, b) => new Date(a.deadline) - new Date(b.deadline));
-  } else if (sortBy === "agency") {
-    filtered.sort((a, b) => a.agency.localeCompare(b.agency));
-  } else if (sortBy === "amount") {
-    filtered.sort((a, b) => parseAmountForSort(b.amount) - parseAmountForSort(a.amount));
-  }
-
-  displayGrants(filtered);
+  const archiveToggle = document.getElementById("archiveToggle");
+  archiveToggle.addEventListener("click", () => {
+    archiveOpen = !archiveOpen;
+    archiveToggle.classList.toggle("open", archiveOpen);
+    archiveToggle.setAttribute("aria-expanded", archiveOpen);
+    archiveToggle.firstChild.textContent = archiveOpen ? "Hide grant archive " : "View grant archive ";
+    document.getElementById("archiveWrap").classList.toggle("show", archiveOpen);
+    if (archiveOpen) document.getElementById("archiveWrap").scrollIntoView({ behavior: "smooth", block: "nearest" });
+  });
 }
 
 /* ---------- data loading ---------- */
-function normalizeRow(row) {
-  // Case-insensitive header lookup, tolerant of extra spaces
-  const get = (key) => {
-    const found = Object.keys(row).find(k => k.trim().toLowerCase() === key);
-    return found ? String(row[found]).trim() : "";
-  };
-  return {
-    agency: get("agency"),
-    title: get("title"),
-    area: get("area"),
-    amount: get("amount"),
-    deadline: get("deadline"),
-    eligibility: get("eligibility"),
-    duration: get("duration"),
-    url: get("url") || "#"
-  };
-}
-
 function finishLoading(list, usedFallback) {
   grants = list;
   populateFilters(grants);
-  filterGrants();
-  document.getElementById("updatedDate").innerText =
+  applyFilters();
+  document.getElementById("updatedDate").textContent =
     new Date().toLocaleDateString("en-IN", { day: "2-digit", month: "long", year: "numeric", hour: "2-digit", minute: "2-digit" });
   document.getElementById("loadingBanner").classList.remove("show");
   document.getElementById("errorBanner").classList.toggle("show", usedFallback);
+
+  const dot = document.getElementById("statusDot");
+  const text = document.getElementById("statusText");
+  dot.classList.toggle("err", usedFallback);
+  text.textContent = usedFallback ? "Showing saved data — live sheet unreachable" : "Synced live from Google Sheets";
 }
 
 function loadGrants() {
@@ -545,20 +1101,24 @@ function loadGrants() {
     download: true,
     header: true,
     skipEmptyLines: true,
-    complete: function(results) {
-      const rows = results.data.map(normalizeRow).filter(r => r.title && r.deadline);
+    complete: function (results) {
+      const rows = (results.data || [])
+        .map(normalizeRow)
+        .filter(r => r.title && r.agency && r.deadline && isValidDate(new Date(r.deadline)));
       if (rows.length === 0) {
         finishLoading(fallbackGrants, true);
       } else {
         finishLoading(rows, false);
       }
     },
-    error: function() {
+    error: function () {
       finishLoading(fallbackGrants, true);
     }
   });
 }
 
+wireControls();
+renderAudienceTabs([]);
 loadGrants();
 </script>
 </body>
